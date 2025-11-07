@@ -793,8 +793,23 @@ https://docker.au-team.irpo у браузера клиента не должно
 ### • Запретите остальные подключения из сети Интернет во внутреннюю
 сеть.
 72
-## 5. Настройте принт-сервер cups на сервере HQ-SRV:
-### • Опубликуйте виртуальный pdf-принтер
+## 5. Настройте принт-сервер cups на сервере HQ-SRV:  
+### • Опубликуйте виртуальный pdf-принтер   
+   dnf isntall cups -y   
+   systemctl enable --now cupsd   
+   nano /etc/cups/cupsd.conf   
+   Нужно изменить строку Listen localhost:631 на Listen *:631     
+   В строке Restrict access to server... добавить Allow all   
+   <Location />  
+     Order allow, deny  
+     Allow all  
+   <Location>  
+   В строке Restrict access to admin pages... добавить Allow all   
+   <Location />  
+     Order allow, deny  
+     Allow all  
+   <Location>  
+ ![cupsconf](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupsdconf.png)  
 ### • На клиенте HQ-CLI подключите виртуальный принтер как принтер по
 умолчанию.
 ## 6. Реализуйте логирование при помощи rsyslog на устройствах HQ-RTR, BR-RTR, BR-SRV:
