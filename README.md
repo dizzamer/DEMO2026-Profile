@@ -821,7 +821,9 @@ https://docker.au-team.irpo у браузера клиента не должно
   Далее заходим по админской учеткой student:student, должен появится принтер  
   ![cupsadminlog](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupscheckpr.png)  
 
-  ![cupsadminlog](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupspdfadd3.png)   
+  ![cupsadminlog](https://github.com/dizzamer/DEMO2026-Profile/blob/main/nlockprinter.png)  
+  
+  ![cupsadminlog](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupspdfadd3.png)    
 
   ![cupsadd4](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupspdfadd4.png)  
 
