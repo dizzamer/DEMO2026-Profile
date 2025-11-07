@@ -796,7 +796,7 @@ https://docker.au-team.irpo у браузера клиента не должно
 ## 5. Настройте принт-сервер cups на сервере HQ-SRV:  
 ### • Опубликуйте виртуальный pdf-принтер   
    dnf isntall cups -y   
-   systemctl enable --now cupsd   
+   systemctl enable --now cupsd cupspdf  
    делаем бэкап файла cp /etc/cups/cupsd.conf /etc/cups/cupsd.conf.backup  
    nano /etc/cups/cupsd.conf   
    Нужно изменить строку Listen localhost:631 на Listen *:631     
