@@ -821,13 +821,13 @@ https://docker.au-team.irpo у браузера клиента не должно
   Далее заходим по админской учеткой student:student, должен появится принтер  
   ![cupsadminlog](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupscheckpr.png)  
 
-  ![cupsadminlog](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupsadd3.png)   
+  ![cupsadminlog](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupspdfadd3.png)   
 
-  ![cupsadd4](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupscadd4.png)  
+  ![cupsadd4](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupspdfadd4.png)  
 
-  ![cupsadd5](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupscadd5.png)  
+  ![cupsadd5](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupspdfadd5.png)  
 
-  ![cupsadd5](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupscadd6.png)  
+  ![cupsadd5](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupspdfadd6.png)  
 ## 6. Реализуйте логирование при помощи rsyslog на устройствах HQ-RTR, BR-RTR, BR-SRV:
 ### • Сервер сбора логов расположен на HQ-SRV, убедитесь, что сервер не
 является клиентом самому себе
