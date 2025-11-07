@@ -645,13 +645,23 @@
           restart: always  
           ports:  
             - 8080:80
+          environment:
+          DB_HOST: "192.168.0.66"
+          DB_PORT: "3306"
+          DB_NAME: mariadb
+          DB_USER: webc
+          DB_PASS: P@ssw0rd
+          DB_TYPE: maria
           depends_on:  
-            - database
+            - db  
         db:
-          container_name: testdb 
-          image: db:latest
-          environment:  
-          DB_USER: db 
+          container_name: testdb  
+          image: mariadb:latest    
+          environment: 
+          MARIADB_ROOT_PASSWORD: P@ssw0rd  
+          DB_NAME: mariadb  
+          DB_USER: webc 
+          DB_PASSWORD: P@ssw0rd  
   ![webyaml](https://github.com/dizzamer/DEMO2026-Profile/blob/main/webyaml.png)
    ### Поднимаем стек контейнеров с помощью команды: 
        docker compose -f web.yml up -d  
