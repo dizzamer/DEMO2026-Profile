@@ -818,15 +818,16 @@ https://docker.au-team.irpo у браузера клиента не должно
     Переводим SELinux в состояние Permissive  
     setenforce 0  
     getenforce  
-    Копируем файл .ppd в домашнюю папку  
-    cp /usr/share/cups/model/CUPS-PDF_noopt.ppd ~/   
-    lpadmin -p Cups-PDF -v cups-pdf:/ -m CUPS-PDF_noopt.ppd -E  
-  ![cupsprinter](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cups_printer.png)  
-  Устанавливаем:  
-  lpadmin -p Cups-PDF -v cups-pdf:/ -m CUPS-PDF_noopt.ppd -E  
-  Далее заходим по админской учеткой student:student  
-  ![cupsadminlog](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupsadminlog.png)  
-  
+  Далее заходим по админской учеткой student:student, должен появится принтер  
+  ![cupsadminlog](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupscheckpr.png)  
+
+  ![cupsadminlog](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupsadd3.png)   
+
+  ![cupsadd4](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupscadd4.png)  
+
+  ![cupsadd5](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupscadd5.png)  
+
+  ![cupsadd5](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupscadd6.png)  
 ## 6. Реализуйте логирование при помощи rsyslog на устройствах HQ-RTR, BR-RTR, BR-SRV:
 ### • Сервер сбора логов расположен на HQ-SRV, убедитесь, что сервер не
 является клиентом самому себе
