@@ -797,6 +797,7 @@ https://docker.au-team.irpo у браузера клиента не должно
 ### • Опубликуйте виртуальный pdf-принтер   
    dnf isntall cups -y   
    systemctl enable --now cupsd   
+   делаем бэкап файла cp /etc/cups/cupsd.conf /etc/cups/cupsd.conf.backup  
    nano /etc/cups/cupsd.conf   
    Нужно изменить строку Listen localhost:631 на Listen *:631     
    В строке Restrict access to server... добавить Allow all    
@@ -811,8 +812,21 @@ https://docker.au-team.irpo у браузера клиента не должно
    <Location>   
  ![cupsconf](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupsdconf.png)   
   systemctl restart cupsd   
+
 ### • На клиенте HQ-CLI подключите виртуальный принтер как принтер по умолчанию.  
-  dnf install cups -y  
+    Настройка производится на HQ-CLI:  
+    Переводим SELinux в состояние Permissive  
+    setenforce 0  
+    getenforce  
+    Копируем файл .ppd в домашнюю папку  
+    cp /usr/share/cups/model/CUPS-PDF_noopt.ppd ~/   
+    lpadmin -p Cups-PDF -v cups-pdf:/ -m CUPS-PDF_noopt.ppd -E  
+  ![cupsprinter](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cups_printer.png)  
+  Устанавливаем:  
+  lpadmin -p Cups-PDF -v cups-pdf:/ -m CUPS-PDF_noopt.ppd -E  
+  Далее заходим по админской учеткой student:student  
+  ![cupsadminlog](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupsadminlog.png)  
+  
 ## 6. Реализуйте логирование при помощи rsyslog на устройствах HQ-RTR, BR-RTR, BR-SRV:
 ### • Сервер сбора логов расположен на HQ-SRV, убедитесь, что сервер не
 является клиентом самому себе
