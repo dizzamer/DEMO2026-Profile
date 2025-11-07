@@ -799,7 +799,7 @@ https://docker.au-team.irpo у браузера клиента не должно
    systemctl enable --now cupsd   
    nano /etc/cups/cupsd.conf   
    Нужно изменить строку Listen localhost:631 на Listen *:631     
-   В строке Restrict access to server... добавить Allow all   
+   В строке Restrict access to server... добавить Allow all    
    <Location />  
      Order allow, deny  
      Allow all  
@@ -808,10 +808,11 @@ https://docker.au-team.irpo у браузера клиента не должно
    <Location />  
      Order allow, deny  
      Allow all  
-   <Location>  
- ![cupsconf](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupsdconf.png)  
-### • На клиенте HQ-CLI подключите виртуальный принтер как принтер по
-умолчанию.
+   <Location>   
+ ![cupsconf](https://github.com/dizzamer/DEMO2026-Profile/blob/main/cupsdconf.png)   
+  systemctl restart cupsd   
+### • На клиенте HQ-CLI подключите виртуальный принтер как принтер по умолчанию.  
+  dnf install cups -y  
 ## 6. Реализуйте логирование при помощи rsyslog на устройствах HQ-RTR, BR-RTR, BR-SRV:
 ### • Сервер сбора логов расположен на HQ-SRV, убедитесь, что сервер не
 является клиентом самому себе
