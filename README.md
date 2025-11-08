@@ -672,10 +672,11 @@
  networks: 
    testapp-net: 
    
- ![webyaml](https://github.com/dizzamer/DEMO2026-Profile/blob/main/webyaml.png)
-   ### Поднимаем стек контейнеров с помощью команды: 
-       docker compose -f web.yml up -d  
-     • Приложение должно быть доступно для внешних подключений через порт 8080
+ ![webyaml](https://github.com/dizzamer/DEMO2026-Profile/blob/main/webyaml.png) 
+   ### Поднимаем стек контейнеров с помощью команды:  
+       docker compose -f web.yml up -d   
+     • Приложение должно быть доступно для внешних подключений через порт 8080   
+ ![web](https://github.com/dizzamer/DEMO2026-Profile/blob/main/compose_web.png)  
 ## 7.	Разверните веб приложениена сервере HQ-SRV:   
 ### Подготовка   
     Переводим selinux в состояние Permissive:  
