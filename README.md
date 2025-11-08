@@ -666,12 +666,13 @@
         MARIADB_ROOT_PASSWORD: Passw0rd
         MARIADB_DATABASE: testdb
         MARIADB_USER: testc
-        MARIADB_PASSWORD: P@ssw0rd
-      networks:
-        - testapp-net
- networks:
-   testapp-net:
-  ![webyaml](https://github.com/dizzamer/DEMO2026-Profile/blob/main/webyaml.png)
+        MARIADB_PASSWORD: P@ssw0rd 
+      networks: 
+        - testapp-net  
+ networks: 
+   testapp-net: 
+   
+ ![webyaml](https://github.com/dizzamer/DEMO2026-Profile/blob/main/webyaml.png)
    ### Поднимаем стек контейнеров с помощью команды: 
        docker compose -f web.yml up -d  
      • Приложение должно быть доступно для внешних подключений через порт 8080
