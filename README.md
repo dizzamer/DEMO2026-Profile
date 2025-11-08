@@ -638,31 +638,40 @@
    ![readmetxt](https://github.com/dizzamer/DEMO2026-Profile/blob/main/readmetxt.png)
    ### Готовим наш yaml файл  
       nano web.yaml
-      services:  
-        web:  
-          container_name: testapp  
-          image: site:latest  
-          restart: always  
-          ports:  
-            - 8080:80
-          environment:
-          DB_HOST: "192.168.0.66"
-          DB_PORT: "3306"
-          DB_NAME: mariadb
-          DB_USER: webc
-          DB_PASS: P@ssw0rd
-          DB_TYPE: maria
-          depends_on:  
-            - db  
-        db:
-          container_name: testdb  
-          image: mariadb:latest    
-          environment: 
-          MARIADB_ROOT_PASSWORD: P@ssw0rd  
-          DB_NAME: mariadb  
-          DB_USER: webc 
-          DB_PASSWORD: P@ssw0rd  
-  ![webyaml](https://github.com/dizzamer/DEMO2026-Profile/blob/main/webyaml1.png)
+       services:
+    web:
+      container_name: testapp
+      image: site:latest
+      restart: always
+      ports:
+        - 8080:8000
+      networks:
+        - testapp-net
+      environment:
+        DB_HOST: db
+        DB_PORT: "3306"
+        DB_NAME: testdb
+        DB_USER: testc
+        DB_PASS: P@ssw0rd
+        DB_TYPE: maria
+      depends_on:
+        - db
+    db:
+      container_name: testdb
+      image: mariadb:10.11
+      restart: always
+      ports:
+        - "3306:3306"
+      environment:
+        MARIADB_ROOT_PASSWORD: Passw0rd
+        MARIADB_DATABASE: testdb
+        MARIADB_USER: testc
+        MARIADB_PASSWORD: P@ssw0rd
+      networks:
+        - testapp-net
+ networks:
+   testapp-net:
+  ![webyaml](https://github.com/dizzamer/DEMO2026-Profile/blob/main/webyaml.png)
    ### Поднимаем стек контейнеров с помощью команды: 
        docker compose -f web.yml up -d  
      • Приложение должно быть доступно для внешних подключений через порт 8080
