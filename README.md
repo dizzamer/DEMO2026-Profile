@@ -642,36 +642,34 @@
     web:
       container_name: testapp
       image: site:latest
-      restart: always
-      ports:
-        - 8080:8000
-      networks:
-        - testapp-net
-      environment:
-        DB_HOST: db
-        DB_PORT: "3306"
-        DB_NAME: testdb
-        DB_USER: testc
-        DB_PASS: P@ssw0rd
-        DB_TYPE: maria
-      depends_on:
-        - db
-    db:
-      container_name: testdb
-      image: mariadb:10.11
-      restart: always
-      ports:
-        - "3306:3306"
-      environment:
-        MARIADB_ROOT_PASSWORD: Passw0rd
-        MARIADB_DATABASE: testdb
-        MARIADB_USER: testc
+      restart: always 
+      ports: 
+        - 8080:8000 
+      networks: 
+        - testapp-net 
+      environment: 
+        DB_HOST: db 
+        DB_PORT: "3306" 
+        DB_NAME: testdb 
+        DB_USER: testc 
+        DB_PASS: P@ssw0rd 
+        DB_TYPE: maria 
+      depends_on: 
+        - db 
+    db: 
+      container_name: testdb 
+      image: mariadb:10.11 
+      restart: always 
+      ports: 
+        - "3306:3306" 
+      environment: 
+        MARIADB_ROOT_PASSWORD: Passw0rd  
+        MARIADB_DATABASE: testdb  
+        MARIADB_USER: testc  
         MARIADB_PASSWORD: P@ssw0rd 
       networks: 
-        - testapp-net  
- networks: 
-   testapp-net: 
-   
+        - testapp-net     
+   Конфигурационный файл:    
  ![webyaml](https://github.com/dizzamer/DEMO2026-Profile/blob/main/webyaml.png) 
    ### Поднимаем стек контейнеров с помощью команды:  
        docker compose -f web.yml up -d   
