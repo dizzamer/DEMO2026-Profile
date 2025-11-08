@@ -735,6 +735,11 @@
       Настройка производится на EcoRouter BR-RTR:  
      ip nat source static tcp 192.168.0.66 2026 172.16.2.14 2026  
 ## 9.	Настройте веб-сервер nginx как обратный прокси-сервер на ISP  
+     Переводим selinux в состояние Permissive:  
+     setenforce 0    
+     Проверяем:  
+     getenforce  
+     Должно быть состояние: Permissive
      dnf install nginx -y  
      systemctl enable --now nginx  
      Перед настройкой конфига укажем значение server_names_hash_bucket_size 64
