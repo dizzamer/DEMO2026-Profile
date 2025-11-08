@@ -756,7 +756,7 @@
             auth_basic "Restricted area"; 
             auth_basic_user_file /etc/nginx/.htpasswd;  
         } 
-} 
+     }
 ![nginx1](https://github.com/dizzamer/DEMO2026-Profile/blob/main/nginx3web1.png)
   ### • При обращении по доменному имени docker.au-team.irpo клиента должно открываться веб приложение testapp
        nano /etc/nginx/nginx.conf
@@ -769,7 +769,7 @@
             proxy_set_header   X-Real-IP        $remote_addr; 
             proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for; 
         }
-}
+      }
 ![nginx2](https://github.com/dizzamer/DEMO2026-Profile/blob/main/nginx2docker1.png)
 ## 10.	На маршрутизаторе ISP настройте web-based аутентификацию:  
   ### •	При обращении к сайту web.au-team.irpo клиенту должно быть предложено ввести аутентификационные данные    
