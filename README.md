@@ -746,29 +746,31 @@
   ### •	При обращении по доменному имени web.au-team.irpo у клиента должно открываться веб приложение на HQ-SRV 
       nano /etc/nginx/nginx.conf  
       server {
-        server_name web.au-team.irpo;
-        location / {
-            proxy_pass http://172.16.1.14:8080;
-            proxy_redirect     off;
-            proxy_set_header   Host             $host;
-            proxy_set_header   X-Real-IP        $remote_addr;
-            proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
-        }
-}
-![nginx1](https://github.com/dizzamer/DEMO2026-Profile/blob/main/nginx3web.png)
+        server_name web.au-team.irpo; 
+        location / { 
+            proxy_pass http://172.16.1.14:8080; 
+            proxy_redirect     off; 
+            proxy_set_header   Host             $host; 
+            proxy_set_header   X-Real-IP        $remote_addr; 
+            proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for; 
+            auth_basic "Restricted area"; 
+            auth_basic_user_file /etc/nginx/.htpasswd;  
+        } 
+} 
+![nginx1](https://github.com/dizzamer/DEMO2026-Profile/blob/main/nginx3web1.png)
   ### • При обращении по доменному имени docker.au-team.irpo клиента должно открываться веб приложение testapp
        nano /etc/nginx/nginx.conf
-       server {
-        server_name docker.au-team.irpo;
-        location / {
-            proxy_pass http://172.16.2.14:8080;
-            proxy_redirect     off;
-            proxy_set_header   Host             $host;
-            proxy_set_header   X-Real-IP        $remote_addr;
-            proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+       server { 
+        server_name docker.au-team.irpo; 
+        location / { 
+            proxy_pass http://172.16.2.14:8080; 
+            proxy_redirect     off; 
+            proxy_set_header   Host             $host; 
+            proxy_set_header   X-Real-IP        $remote_addr; 
+            proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for; 
         }
 }
-![nginx2](https://github.com/dizzamer/DEMO2026-Profile/blob/main/nginx2docker.png)
+![nginx2](https://github.com/dizzamer/DEMO2026-Profile/blob/main/nginx2docker1.png)
 ## 10.	На маршрутизаторе ISP настройте web-based аутентификацию:  
   ### •	При обращении к сайту web.au-team.irpo клиенту должно быть предложено ввести аутентификационные данные    
       • В качестве логина для аутентификации выберите WEBс паролем P@ssw0rd
