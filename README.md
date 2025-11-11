@@ -424,9 +424,9 @@
    ## •	Введите в домен машину HQ-CLI  
       Ввод в домен HQ-CLI
       Переводим DHCP в полуавтоматический режим и указываем собственный DNS
-      ![fstab](https://github.com/dizzamer/DEMO2026-Profile/blob/main/semiautodhcp.png) 
-      ![fstab](https://github.com/dizzamer/DEMO2026-Profile/blob/main/domain.png)
-      ![fstab](https://github.com/dizzamer/DEMO2026-Profile/blob/main/success.png)
+   ![fstab](https://github.com/dizzamer/DEMO2026-Profile/blob/main/semiautodhcp.png) 
+   ![fstab](https://github.com/dizzamer/DEMO2026-Profile/blob/main/domain.png)
+   ![fstab](https://github.com/dizzamer/DEMO2026-Profile/blob/main/success.png)
    ## 2.	Сконфигурируйте файловое хранилище:  
  ### Настройка проивзодится на HQ-SRV:
   Перед тем как начать проверяем, что установлены следюущие пакеты
