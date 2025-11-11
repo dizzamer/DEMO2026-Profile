@@ -393,52 +393,41 @@
      nano /etc/selinux  
      Замените в файле конфигурации /etc/selinux/config режим enforcing на permissive   
      dnf install samba* krb5* -y  
-     Проверьте доступные серверы имен, просмотрев файл resolv.conf:  
-     cat /etc/resolv.conf  
-     В выводе должно отобразиться наш dns сервер и домен для поиска.  
    ## Создание домена под управлением контроллера домена Samba DC:  
-     Создание резервных копий файлов  
-     Переименуйте файл /etc/smb.conf, он будет создан позднее в процессе выполнения команды samba-tool.  
-     cp /etc/samba/smb.conf /etc/samba/smb.conf.back  
-     Создайте резервную копию используемого по умолчанию конфигурационного файла kerberos:  
-     cp /etc/krb5.conf /etc/krb5.conf.back  
+     nano /etc/krb5.conf
+     # Меняем следующие строки
+     default_realm = au-team.irpo
+     [realms]
+     au-team.irpo = {
+     kdc = dc1.au-team.irpo
+     admin_server = dc1.au-team.irpo
+     }
+     [domain_realm]
+     .au-team.irpo = AU-TEAM.IRPO
+     au-team.irpo = AU-TEAM.IRPO
    ## Конфигурирование сервера с помощью утилиты samba-tool  
-     Файла /etc/samba/smb.conf быть не должно, он сам создаст.  
-     rm -rf /etc/samba/smb.conf  
-     samba-tool domain provision --use-rfc2307 --interactive  
-   ![sambatool](https://github.com/dizzamer/DEMO2025/blob/main/samba-toolprovision.png) 
-   ## Удаление использования службы dns  
-     systemctl stop samba  
-     Подчищаем, все где могут храниться наши записи  
-     sudo rm -rf /var/lib/samba/private/dns_update_cache  
-     sudo rm -rf /var/lib/samba/private/dns_update_list  
-     sudo rm -rf /var/lib/samba/private/dns  
-     sudo rm -rf /var/lib/samba/private/dns.keytab  
-     Добавляем в файл /etc/samba/smb.conf следующее  
-   ![smbconf](https://github.com/dizzamer/DEMO2025/blob/main/smbconf.png)  
- 
-      Запустите и добавьте в автозагрузку службы samba и named:  
-      systemctl enable named samba --now  
-      systemctl status named samba  
-      Проверка созданного домена с помощью команды samba-tool domain info au-team.irpo:  
-   ![sambatool](https://github.com/dizzamer/DEMO2025/blob/main/samba-tool.png)  
+      Файла /etc/samba/smb.conf быть не должно, он сам создаст.
+      rm -rf /etc/samba/smb.conf
+      samba-tool domain provision --use-rfc2307 --interactive
+      1.REALM [AU-TEAM.IRPO]:
+      2.DOMAIN [AU-TEAM]:
+      3.Server Role: DC
+      4.DNS backend: BIND9_DLZ
+      Запустите и добавьте в автозагрузку службы samba:  
+      systemctl status samba  
    ## •	Создайте 5 пользователей для офиса HQ: имена пользователей формата user№.hq. Создайте группу hq, введите в эту группу созданных пользователей  
      sudo samba-tool group add hq  
-    for i in {1..5}; do  
-    sudo samba-tool user create user$i.hq P@ssw0rd$i  
-    sudo samba-tool group addmembers hq user$i.hq  
-    done    
+     for i in {1..5}; do  
+     sudo samba-tool user create user$i.hq P@ssw0rd$i  
+     sudo samba-tool group addmembers hq user$i.hq  
+     done    
    ## •	Введите в домен машину HQ-CLI  
-     Перед вводом необходимо ввести на HQ-SRV:  
-     smbclient -L localhost -U administrator  
-     Проверка kerberos: 
-     kinit administrator@localhost
-### Настройка проивзодится на HQ-CLI:  
-  https://redos.red-soft.ru/base/redos-7_3/7_3-administation/7_3-domain-redos/7_3-domain-config/7_3-redos-in-samba/?nocache=1730793368537  
-•	Пользователи группы hq имеют право аутентифицироваться на клиентском ПК  
-•	Пользователи группы hq должны иметь возможность повышать привилегии для выполнения ограниченного набора команд: cat, grep, id. Запускать другие команды с повышенными привилегиями пользователи группы не имеют права  
-•	Выполните импорт пользователей из файла users.csv. Файл будет располагаться на виртуальной машине BR-SRV в папке /opt  
-## 2.	Сконфигурируйте файловое хранилище:  
+      Ввод в домен HQ-CLI
+      Переводим DHCP в полуавтоматический режим и указываем собственный DNS
+      ![fstab](https://github.com/dizzamer/DEMO2026-Profile/blob/main/semiautodhcp.png) 
+      ![fstab](https://github.com/dizzamer/DEMO2026-Profile/blob/main/domain.png)
+      ![fstab](https://github.com/dizzamer/DEMO2026-Profile/blob/main/success.png)
+   ## 2.	Сконфигурируйте файловое хранилище:  
  ### Настройка проивзодится на HQ-SRV:
   Перед тем как начать проверяем, что установлены следюущие пакеты
   dnf install mdadm nfs-utils -y
