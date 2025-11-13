@@ -779,21 +779,21 @@
 mkdir -p /mnt/samba  
 mount /dev/sr1 /mnt/samba  
 ### • Пользователи должны быть импортированы со своими паролями и другими атрибутами   
-    Настройка производится на серверве BR-SRV: 
-    nano import.sh  
-    #!/bin/bash  
-    tail -n +2 /mnt/samba/Users.csv | while IFS=';' read -r firstName lastName _ _ ou _ _ _ _ password  
+    Настройка производится на серверве BR-SRV:   
+    nano import.sh   
+    #!/bin/bash   
+    tail -n +2 /mnt/samba/Users.csv | while IFS=';' read -r firstName lastName _ _ ou _ _ _ _ password    
     do  
     samba-tool ou create "OU=$ou"  
-    samba-tool user create "${firstName}${lastName}" "$password" \  
+    samba-tool user create "${firstName}${lastName}" "P@ssw0rd1" \   
     --userou="OU=$ou"    
     done  
     chmod +x import/sh  
     ./import.sh  
-### • Убедитесь, что импортированные пользователи могут войти на машину HQ-CLI
-
-
-
+![bash](https://github.com/dizzamer/DEMO2026-Profile/blob/main/importsh.png)    
+### • Убедитесь, что импортированные пользователи могут войти на машину HQ-CLI  
+Вход выполнен для пользователя выполнен  
+![sambauser](https://github.com/dizzamer/DEMO2026-Profile/blob/main/user_samba.png)
 ## 2. Выполните настройку центра сертификации на базе HQ-SRV:
 ### • Необходимо использовать отечественные алгоритмы шифрования
 ### • Сертификаты выдаются на 30дней
